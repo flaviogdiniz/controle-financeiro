@@ -1,27 +1,33 @@
-# ControleFinanceiro
+# Planilha Mensal de Controle Financeiro
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+Este é um projeto em Angular para controle financeiro mensal. Ele permite que os usuários cadastrem entradas e saídas de dinheiro, organizando por data, descrição e categoria, além de calcular o saldo acumulado automaticamente. O sistema também permite editar, excluir e gerar um relatório em PDF das informações registradas.
 
-## Development server
+## Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Cadastro de transações financeiras**: Insira dados como data, descrição, categoria, valor de entrada e saída.
+- **Edição de registros**: Permite a alteração de transações já cadastradas.
+- **Exclusão de registros**: Remova transações financeiras da lista.
+- **Visualização de totais**: Exibe o total de entradas, saídas e saldo acumulado.
+- **Geração de PDF**: O sistema gera um relatório financeiro no formato PDF.
 
-## Code scaffolding
+## Tecnologias Utilizadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular**: Framework para construção do front-end.
+- **Reactive Forms**: Para criação e validação de formulários.
+- **jsPDF**: Biblioteca para geração de arquivos PDF.
+- **Bootstrap**: Framework CSS para estilo e responsividade.
 
-## Build
+## Instalação
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Requisitos
 
-## Running unit tests
+- Node.js instalado em sua máquina.
+- Angular CLI.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Passos para Instalar
 
-## Running end-to-end tests
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/planilha-financeira.git
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
