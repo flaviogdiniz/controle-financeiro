@@ -1,0 +1,93 @@
+
+
+<h1 class="text-center">Planilha Mensal de Controle Financeiro</h1>
+<form [formGroup]="formulario">
+
+    <!-- DATA -->
+    @if(formulario.get('data').hasError('required') && formulario.get('data').touched){
+      <p class="alert alert-warning">O campo data é obrigatório.</p>
+    }
+    <input type="date"   formControlName="data">
+
+    <!-- DESCRIÇÃO-->
+    @if(formulario.get('descricao').hasError('required') && formulario.get('descricao').touched){
+      <p class="alert alert-warning">O campo descrição é obrigatório.</p>
+    }
+    @if(formulario.get('descricao').hasError('minlength') && formulario.get('descricao').touched){
+      <p class="alert alert-warning">O campo descrição precisa conter pelo menos 3 caracteres.</p>
+    }
+    <input type="text"   formControlName="descricao" placeholder="Descrição"    class="form-control">
+
+    <!-- CATEGORIA-->
+    @if(formulario.get('categoria').hasError('required') && formulario.get('categoria').touched){
+      <p class="alert alert-warning">O campo categoria é obrigatório.</p>
+    }
+    @if(formulario.get('categoria').hasError('minlength') && formulario.get('categoria').touched){
+      <p class="alert alert-warning">O campo categoria precisa conter pelo menos 3 caracteres.</p>
+    }
+
+    <input type="text"   formControlName="categoria" placeholder="Categoria"    class="form-control">
+    
+
+    <!-- ENTRADA-->
+    @if(formulario.get('entrada').hasError('min') && formulario.get('entrada').touched){
+      <p class="alert alert-warning">O campo entrada não aceita nota inferior a 0.</p>
+    }
+    <input type="number" formControlName="entrada" placeholder="Entrada (R$)" class="form-control">
+
+     <!-- SAIDA-->
+    @if(formulario.get('saida').hasError('min') && formulario.get('saida').touched){
+      <p class="alert alert-warning">O campo entrada não aceita nota inferior a 0.</p>
+    }
+    <input type="number" formControlName="saida" placeholder="Saída (R$)"   class="form-control">
+    
+    @if(btnCadastrar){
+      <input type="button" value="Cadastrar"  class="btn btn-dark"  (click)="cadastrar()" [disabled]="formulario.invalid">
+    }@else {
+      <input type="button" value="Alterar"    class="btn btn-dark"  (click)="alterar()" [disabled]="formulario.invalid">
+      <input type="button" value="Remover"    class="btn btn-dark"  (click)="remover()">
+      <input type="button" value="Cancelar"   class="btn btn-dark"  (click)="cancelar()">
+    }
+    <input type="button" value="Gerar PDF" class="btn btn-dark" (click)="gerarPDF()">
+
+    
+    
+
+</form>
+
+<table class="table" class="table table-bordered">
+    <thead>
+        <tr class="table-secondary">
+          <th>#</th>
+          <th>Data</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>Entrada (R$)</th>
+          <th>Saída (R$)</th>
+          <th>Saldo Acumulado (R$)</th>
+          <th>Selecionar</th>
+        </tr>
+      </thead>
+    <tbody>
+      <tr *ngFor="let v of vetor; index as indice">
+         <td>{{indice + 1}}</td>
+         <td>{{v.data | date:'dd/MM/yyyy'}}</td>
+         <td>{{v.descricao}}</td>
+         <td>{{v.categoria}}</td>
+         <td>{{v.entrada | currency:'BRL' }}</td>
+         <td>{{v.saida | currency:'BRL' }}</td>
+         <td>{{v.saldoAcumulado | currency:'BRL'}}</td>
+         <td><button class="btn btn-dark"  (click)="selecionar(indice)">Selecionar</button></td>
+      </tr>
+      <tr>
+        <td>#</td>
+        <td colspan="3">Total</td>
+        <td>{{totalEntrada | currency:'BRL'}}</td>
+        <td>{{totalSaida | currency:'BRL'}}</td>
+        <td>{{saldoAcumulado | currency:'BRL'}}</td>
+        <td></td>
+      </tr>
+      
+    </tbody>
+</table>
+
